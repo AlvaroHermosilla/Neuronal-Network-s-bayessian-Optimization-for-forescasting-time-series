@@ -2,14 +2,14 @@
 
 This work focuses on building and comparing predictive models using supervised deep learning methods to forecast power quality (PQ) time series, with a focus on the 3rd harmonic.
 
-## 🚀 Models Implemented
+##  Models Implemented
 
 - Multilayer Perceptron (MLP)
 - Recurrent Neural Networks (RNN):LSTM, GRU, BiLSTM, BiGRU
 - Convolutional Neural Networks (CNN): Convolutional 1-Dimensional
 - Hybrid architectures: Conv1D-LSTM
 - 
-## ⚙️ Features
+##  Features
 
 - Custom preprocessing pipelines for time series data
 - Training, validation, and test splits
@@ -17,7 +17,7 @@ This work focuses on building and comparing predictive models using supervised d
 - Evaluation metrics: MAE, MBE, RSE, RMSE, MAPE
 - Visualization of predictions vs real values
 
-## 🧪 Technologies Used
+##  Technologies Used
 
 - Python 3.12
 - Cuda 12.8
