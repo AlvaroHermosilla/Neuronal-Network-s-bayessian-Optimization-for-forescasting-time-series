@@ -5,10 +5,10 @@ This work focuses on building and comparing predictive models using supervised d
 ##  Models Implemented
 
 - Multilayer Perceptron (MLP)
-- Recurrent Neural Networks (RNN):LSTM, GRU, BiLSTM, BiGRU
+- Recurrent Neural Networks (RNN): LSTM, GRU, BiLSTM, BiGRU
 - Convolutional Neural Networks (CNN): Convolutional 1-Dimensional
 - Hybrid architectures: Conv1D-LSTM
-- 
+  
 ##  Features
 
 - Custom preprocessing pipelines for time series data
