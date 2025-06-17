@@ -1,1 +1,1 @@
-# Neuronal-Network-s-bayessian-Optimization-for-forescasting-time-series
+# Bayessian Optimization for forecasting power quality time series.
