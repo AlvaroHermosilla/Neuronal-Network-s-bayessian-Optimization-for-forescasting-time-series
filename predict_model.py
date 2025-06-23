@@ -9,6 +9,7 @@ import keras
 
 #---------------------------------------------------------------------------------------------------
 file = 'dataset_full.csv'
+file_model = 'BiLSTM'
 ni = 144*0
 nf = 144*247
 df = pd.read_csv(file, header=0)
@@ -55,7 +56,7 @@ supervised_transform = {
                         }
 
 figure =    {
-                'fname':                './Fig3_results_H3_Day.svg',
+                'fname':                './Fig3_results_H3_Day.png',
                 'dpi':                  600,
                 'figsize':              [8.75, 15],
                 'fontname':             'Times New Roman',
@@ -91,14 +92,14 @@ figure =    {
                 'y2labelpad':           [3, 3, 3, 3],
                 'axis_label_fontsize':  10,
                 'tick_label_fontsize':  10,
-                'y1legend':              [['Ground truth ($I_{A_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($I_{B_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($I_{C_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($I_{N_3}$)', 'BiLSTM']],
-                'y2legend':              [['Ground truth ($\\phi_{A_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($\\phi_{B_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($\\phi_{C_3}$)', 'BiLSTM'],
-                                          ['Ground truth ($\\phi_{N_3}$)', 'BiLSTM']],
+                'y1legend':              [['Ground truth ($I_{A_3}$)', f'{file_model}'],
+                                          ['Ground truth ($I_{B_3}$)', f'{file_model}'],
+                                          ['Ground truth ($I_{C_3}$)', f'{file_model}'],
+                                          ['Ground truth ($I_{N_3}$)', f'{file_model}']],
+                'y2legend':              [['Ground truth ($\\phi_{A_3}$)', f'{file_model}'],
+                                          ['Ground truth ($\\phi_{B_3}$)', f'{file_model}'],
+                                          ['Ground truth ($\\phi_{C_3}$)', f'{file_model}'],
+                                          ['Ground truth ($\\phi_{N_3}$)', f'{file_model}']],
                 'legend_fontsize':      8,
                 'legend_location':      ['upper left', 'lower right'],
                 'legend_cols':          [3, 3],
@@ -182,7 +183,7 @@ testY_normalized_imag = (testY_imag-min_imag)/(max_imag-min_imag)
 #---------------------------------------------------------------------------------------------------
 #Magnitude
 #Load json and create model
-file_model = 'BiLSTM'
+
 Model = f'./Ficheros_entrenamiento/{file_model}.h5'
 model_imag = load_model(Model,custom_objects={'mse': keras.losses.MeanSquaredError()})
 
@@ -225,7 +226,7 @@ bounds99_iph = []
 
 #Get the error percentiles along time steps
 for i in global_settings['features']:
-    bounds100_imag.append(np.percentile(a=errors_imag[:,:,i], q=[5,95], axis=0))
+    bounds100_imag.append(np.percentile(a=errors_imag[:,:,i], q=[2.5,97.5], axis=0))
 
 bounds100_imag = np.array(bounds100_imag)
 
@@ -254,18 +255,8 @@ for i in global_settings['features']:
     ax[i].set_xlim(figure['xlims'])
 
 
-    ax_twin = ax[i].twinx()
-    ax_twin.set_ylim(figure['y2lims'][i])
-    y2ticks = np.arange(figure['y2lims'][i][0],
-                       figure['y2lims'][i][1] + figure['y2ticks_frequency'][i],
-                       figure['y2ticks_frequency'][i])
-    ax_twin.set_yticks(ticks=y2ticks)
-    ax_twin.set_ylabel(ylabel=figure['y2labels'][i],
-                       fontsize=figure['axis_label_fontsize'],
-                       labelpad=figure['y2labelpad'][i])
-    ax_twin.set_yticklabels(labels=y2ticks,
-                            rotation=0,
-                            fontsize = figure['tick_label_fontsize'])
+
+    
     
     #plt.plot(np.arange(len(bounds[0] + testY_hat[example,:, feature])), bounds[0] + testY_hat[example,:, feature], color=plot['bounds_color'])
     #plt.plot(np.arange(len(bounds[1] + testY_hat[example,:, feature])), bounds[1] + testY_hat[example,:, feature], color=plot['bounds_color'])
@@ -305,10 +296,7 @@ for i in global_settings['features']:
                  ncols=figure['legend_cols'][0],
                  framealpha=figure['legend_transparency'])
     
-    ax_twin.legend(loc=figure['legend_location'][1],
-                   fontsize=figure['legend_fontsize'],
-                   ncols=figure['legend_cols'][1],
-                   framealpha=figure['legend_transparency'])
+
 
 
 
