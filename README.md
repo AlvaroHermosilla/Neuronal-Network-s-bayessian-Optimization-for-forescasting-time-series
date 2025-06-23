@@ -27,6 +27,8 @@ This work focuses on building and comparing predictive models using supervised d
 - Scikit-learn
 
 
-https://github.com/AlvaroHermosilla/Neuronal-Network-s-bayessian-Optimization-for-forescasting-time-series/blob/main/Tuner_Modelos.py
+##  Citation
 
-https://github.com/AlvaroHermosilla/Neuronal-Network-s-bayessian-Optimization-for-forescasting-time-series/blob/main/predict_model.py
+A.Hermosilla-Sanchez-de-Medina, "Algoritmos de aprendizaje automático para
+predecir la evolución de los sistemas eléctricos",2025. [Online].Available: 
+https://github.com/AlvaroHermosilla/Neuronal-Network-s-bayessian-Optimization-for-forescasting-time-series/edit/main/README.md
